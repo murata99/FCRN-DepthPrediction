@@ -12,7 +12,9 @@ RUN eval "$(pyenv init -)" && pip install numpy tensorflow==1.2.1 pillow matplot
 RUN echo 'PATH="$PATH:~/.pyenv/bin"' >> $HOME/.bashrc
 RUN echo 'eval "$(pyenv init -)"'    >> $HOME/.bashrc
 
-COPY . /FCRN-DepthPrediction
+# COPY . /FCRN-DepthPrediction
+RUN cd / && git clone https://github.com/iro-cp/FCRN-DepthPrediction.git
+
 RUN cd /FCRN-DepthPrediction && git checkout e47e593026c80530f7c387c4feca24f88c1618a2
 RUN cd /FCRN-DepthPrediction && curl -L -O http://campar.in.tum.de/files/rupprecht/depthpred/NYU_ResNet-UpProj.npy
 
